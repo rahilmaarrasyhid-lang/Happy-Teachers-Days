@@ -1,33 +1,176 @@
-<!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>RA ARRAZZAQ — Online Photobooth</title>
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#244d86">
+<title>Photobooth Hari Guru 2026 | RA ARRAZZAQ</title>
 <style>
-:root{--ink:#24395c;--pink:#ffd8d4;--blue:#cdeeff;--green:#7c9c09;--orange:#ff9438}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:linear-gradient(145deg,#d6ecff,#fce0dd 60%,#fff2ca);color:var(--ink);min-height:100vh}.wrap{max-width:1050px;margin:auto;padding:22px 16px 44px}.hero{text-align:center;margin:0 auto 20px}.hero h1{font-size:clamp(24px,5vw,42px);margin:0;font-weight:900;letter-spacing:-1px}.hero p{margin:6px 0 0;opacity:.78}.panel{background:#ffffffd9;border:1px solid #fff;border-radius:24px;padding:18px;box-shadow:0 15px 45px #4c6e9b18}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.controls{display:flex;flex-direction:column;gap:14px}.label{font-weight:750;font-size:14px;margin-bottom:7px;display:block}.templates{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.template{border:2px solid transparent;border-radius:12px;overflow:hidden;padding:0;background:white;cursor:pointer}.template.active{border-color:#3284c8;box-shadow:0 0 0 2px #3284c830}.template img{width:100%;display:block;aspect-ratio:9/16;object-fit:cover}.template span{display:block;font-size:11px;padding:6px 2px;color:#354766}.video-wrap{background:#24395c;border-radius:18px;overflow:hidden;position:relative;min-height:280px;display:grid;place-items:center}.video-wrap video{width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}.video-wrap .placeholder{color:#fff;text-align:center;padding:24px}.buttons{display:flex;gap:8px;flex-wrap:wrap}.btn{border:0;border-radius:999px;padding:12px 18px;font-weight:800;cursor:pointer;background:#386da9;color:white}.btn.secondary{background:#eef5ff;color:#365b88}.btn.orange{background:#ff9c44;color:#60330c}.btn:disabled{opacity:.45;cursor:not-allowed}.small{font-size:13px;opacity:.78}.status{font-weight:700;min-height:24px}.preview-area{text-align:center}.result{width:min(100%,390px);max-height:75vh;object-fit:contain;border-radius:14px;display:block;margin:auto;background:#eee}.hidden{display:none!important}.foot{text-align:center;font-size:12px;margin:18px 0;opacity:.65}.camera-help{font-size:13px;background:#f0f6ff;padding:10px 12px;border-radius:12px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:14px 12px}.panel{padding:14px}.templates{grid-template-columns:repeat(3,1fr)}.video-wrap{min-height:220px}}
-</style></head><body><div class="wrap"><header class="hero"><h1>📸 RA ARRAZZAQ PHOTOBOOTH</h1><p>Capture your happy moments — Hari Guru Nasional 2026 ✨</p></header>
-<div class="grid"><section class="panel controls"><div><span class="label">1. Pilih template photobooth</span><div class="templates" id="templates"></div></div>
-<div><span class="label">2. Kamera</span><div class="video-wrap"><video id="video" autoplay playsinline muted class="hidden"></video><div class="placeholder" id="placeholder">Izinkan akses kamera untuk mulai foto 📷</div></div><div class="buttons" style="margin-top:10px"><button class="btn" id="start">Aktifkan Kamera</button><button class="btn secondary" id="flip" disabled>Balik Kamera</button></div><div class="camera-help" style="margin-top:9px">Akses kamera membutuhkan HTTPS (atau localhost). Jika dibuka di HP, izinkan kamera saat browser meminta.</div></div>
-<div><span class="label">3. Ambil foto</span><div class="status" id="status">Belum ada foto.</div><div class="buttons"><button class="btn orange" id="capture" disabled>📸 Ambil Foto</button><button class="btn secondary" id="retake" disabled>Ulangi Foto</button></div></div></section>
-<section class="panel preview-area"><span class="label">Hasil photobooth</span><div id="result-empty" class="camera-help">Foto yang diambil akan tersusun otomatis di template pilihanmu.</div><img id="result" class="result hidden" alt="Hasil photobooth"><div class="buttons" style="justify-content:center;margin-top:12px"><button class="btn" id="download" disabled>⬇️ Download Foto</button><button class="btn secondary" id="reset" disabled>Mulai Lagi</button></div><p class="small">Simpan hasil ke perangkatmu. Tidak ada foto yang diunggah ke server—proses di browser.</p></section></div><footer class="foot">RA ARRAZZAQ Islamic School · Hari Guru Nasional 2026</footer></div>
+:root{--navy:#244d86;--blue:#eaf4ff;--orange:#ff8b32;--ink:#20304a}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:linear-gradient(145deg,#eaf4ff,#fff4e7);min-height:100vh}
+header{padding:26px 16px 18px;text-align:center;background:linear-gradient(120deg,#244d86,#527eb5);color:#fff}
+header h1{font-size:clamp(24px,5vw,38px);margin:0 0 5px;letter-spacing:.3px}
+header p{margin:0;opacity:.94}
+main{width:min(1100px,94%);margin:24px auto 50px}
+.panel{background:#fff;border-radius:22px;padding:clamp(16px,3vw,26px);box-shadow:0 12px 35px #1e41651a;margin-bottom:18px}
+h2{font-size:20px;margin:0 0 14px;color:var(--navy)}
+.templates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.template{border:3px solid transparent;border-radius:15px;padding:8px;background:#f5f8fc;cursor:pointer;text-align:center;color:var(--ink);font:inherit}
+.template.active{border-color:var(--orange);background:#fff8ef}
+.template img{width:100%;height:190px;object-fit:contain;display:block;border-radius:9px}
+.template strong{display:block;padding:8px 2px 3px}
+.workspace{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.95fr);gap:22px;align-items:start}
+.camera-wrap{background:#101827;border-radius:18px;overflow:hidden;position:relative;min-height:220px;display:grid;place-items:center}
+video{display:block;width:100%;max-height:520px;aspect-ratio:4/3;object-fit:cover;transform:scaleX(-1)}
+#cameraPlaceholder{color:#dce8f7;padding:35px;text-align:center}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}
+button,.filelabel{border:0;border-radius:12px;padding:12px 16px;font:600 14px inherit;cursor:pointer;background:var(--navy);color:white}
+button.secondary{background:#e9f0f8;color:var(--navy)}
+button.orange{background:var(--orange);color:#291d10}
+button:disabled{opacity:.45;cursor:not-allowed}
+.status{font-size:14px;color:#52657d;margin:10px 0 0;min-height:22px}
+.preview-area{display:flex;justify-content:center;background:#f1f5fa;border-radius:16px;padding:12px;min-height:300px}
+#resultCanvas{width:min(100%,300px);height:auto;box-shadow:0 8px 24px #20304a24;background:white}
+#shots{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.shot{width:62px;height:62px;border-radius:10px;object-fit:cover;border:2px solid #d9e3ef}
+.step{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:50%;background:#eaf1fb;color:var(--navy);font-weight:800;margin-right:7px}
+.hint{font-size:13px;line-height:1.55;color:#64748b}
+footer{text-align:center;color:#63748a;padding:0 16px 30px;font-size:13px}
+@media(max-width:760px){.workspace{grid-template-columns:1fr}.templates{gap:8px}.template{padding:5px}.template img{height:135px}.template strong{font-size:12px}.preview-area{min-height:200px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📸 Photobooth Hari Guru Nasional 2026</h1>
+  <p>Rayakan Hari Guru bersama keluarga besar RA ARRAZZAQ</p>
+</header>
+<main>
+  <section class="panel">
+    <h2><span class="step">1</span>Pilih desain photobooth</h2>
+    <div class="templates" id="templates">
+      <button class="template active" data-template="0"><img src="assets/template-biru.png" alt="Template biru"><strong>Biru – Happy Teacher's Day</strong></button>
+      <button class="template" data-template="1"><img src="assets/template-kuning.png" alt="Template kuning"><strong>Kuning – Ceria</strong></button>
+      <button class="template" data-template="2"><img src="assets/template-pink.png" alt="Template pink"><strong>Pink – Cute Photostrip</strong></button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2><span class="step">2</span>Ambil foto</h2>
+    <div class="workspace">
+      <div>
+        <div class="camera-wrap">
+          <video id="video" autoplay playsinline muted hidden></video>
+          <div id="cameraPlaceholder">Aktifkan kamera untuk mulai berfoto.<br>Gunakan kamera depan atau belakang.</div>
+        </div>
+        <div class="controls">
+          <button id="startCamera">Aktifkan kamera</button>
+          <button id="switchCamera" class="secondary" disabled>Ganti kamera</button>
+          <button id="capture" class="orange" disabled>📷 Ambil foto</button>
+          <button id="retake" class="secondary" disabled>Ulangi foto terakhir</button>
+        </div>
+        <p class="status" id="status" aria-live="polite">Pilih desain, lalu aktifkan kamera.</p>
+        <div id="shots" aria-label="Foto yang sudah diambil"></div>
+      </div>
+      <div>
+        <h2 style="font-size:17px"><span class="step">3</span>Pratinjau hasil</h2>
+        <div class="preview-area"><canvas id="resultCanvas"></canvas></div>
+        <div class="controls">
+          <button id="download" disabled>⬇ Unduh foto PNG</button>
+          <button id="reset" class="secondary">Mulai ulang</button>
+        </div>
+        <p class="hint">Ambil foto sesuai jumlah bingkai pada desain. Hasil akhir akan tersusun otomatis di template pilihanmu.</p>
+      </div>
+    </div>
+  </section>
+  <section class="panel">
+    <h2>💙 Cara menggunakan</h2>
+    <ol class="hint">
+      <li>Pilih salah satu dari tiga desain photobooth.</li>
+      <li>Tekan <b>Aktifkan kamera</b> dan izinkan akses kamera pada browser.</li>
+      <li>Tekan <b>Ambil foto</b> untuk mengisi bingkai satu per satu.</li>
+      <li>Jika sudah selesai, tekan <b>Unduh foto PNG</b>.</li>
+    </ol>
+    <p class="hint"><b>Privasi:</b> Foto diproses di browser pada perangkat masing-masing. Website ini tidak mengirim atau menyimpan foto ke server.</p>
+  </section>
+</main>
+<footer>RA ARRAZZAQ Islamic School · Hari Guru Nasional 2026</footer>
+
 <script>
-const templates=[
- {name:'Blue Paper Plane',file:'assets/template-blue-1.png',slots:[[.17,.115,.66,.33],[.17,.46,.66,.30]]},
- {name:'Pink Stars',file:'assets/template-pink-stars.png',slots:[[.20,.07,.60,.28],[.20,.38,.60,.29]]},
- {name:'Yellow Floral',file:'assets/template-yellow-floral.png',slots:[[.25,.07,.50,.22],[.25,.29,.50,.22],[.25,.51,.50,.22]]},
- {name:'Blue Shooting Star',file:'assets/template-blue-2.png',slots:[[.12,.15,.76,.25],[.12,.39,.76,.25]]},
- {name:'Peach Strip',file:'assets/template-peach-strip.png',slots:[[.10,.08,.80,.24],[.10,.34,.80,.24],[.10,.60,.80,.24]]},
- {name:'Peach Thank You',file:'assets/template-peach-thankyou.png',slots:[[.07,.15,.86,.22],[.07,.39,.86,.22]]}
+const templates = [
+ {src:'assets/template-biru.png', slots:[[.17,.132,.66,.344],[.17,.535,.66,.218]]},
+ {src:'assets/template-kuning.png', slots:[[.25,.07,.50,.21],[.25,.287,.50,.21],[.25,.505,.50,.21]]},
+ {src:'assets/template-pink.png', slots:[[.10,.075,.80,.235],[.10,.30,.80,.235],[.10,.525,.80,.235]]}
 ];
-const el=id=>document.getElementById(id);let selected=0,stream=null,facing='user',photos=[],shots=0;
-const canv=document.createElement('canvas');const ctx=canv.getContext('2d');
-function showTemplateList(){el('templates').innerHTML=templates.map((t,i)=>`<button class="template ${i===selected?'active':''}" data-i="${i}" aria-label="${t.name}"><img src="${t.file}" alt=""><span>${t.name}</span></button>`).join('');document.querySelectorAll('.template').forEach(b=>b.onclick=()=>{selected=+b.dataset.i;photos=[];el('download').disabled=true;el('retake').disabled=true;el('reset').disabled=true;el('capture').textContent='📸 Ambil Foto';el('status').textContent='Template diganti. Ambil foto baru!';showTemplateList();render()})}
-showTemplateList();
-async function startCam(){try{if(stream)stream.getTracks().forEach(t=>t.stop());stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing},audio:false});el('video').srcObject=stream;el('video').classList.remove('hidden');el('placeholder').classList.add('hidden');el('capture').disabled=false;el('flip').disabled=false;el('start').textContent='Kamera Aktif';el('status').textContent='Kamera siap. Yuk ambil foto!';}catch(e){el('status').textContent='Kamera tidak dapat diakses. Periksa izin kamera dan pastikan situs menggunakan HTTPS.'}}
-el('start').onclick=startCam;el('flip').onclick=()=>{facing=facing==='user'?'environment':'user';startCam()};
-function countdown(n=3){return new Promise(resolve=>{let x=n;el('capture').disabled=true;el('status').textContent=`Foto ${photos.length+1} dalam ${x}…`;let timer=setInterval(()=>{x--;if(x>0)el('status').textContent=`Foto ${photos.length+1} dalam ${x}…`;else{clearInterval(timer);resolve()}},1000)})}
-function snap(){let v=el('video');let c=document.createElement('canvas');c.width=v.videoWidth||720;c.height=v.videoHeight||540;let cc=c.getContext('2d');if(facing==='user'){cc.translate(c.width,0);cc.scale(-1,1)}cc.drawImage(v,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.92)}
-el('capture').onclick=async()=>{if(!stream)return;let max=templates[selected].slots.length;if(photos.length>=max){photos=[];}await countdown();photos.push(snap());shots++;el('capture').disabled=false;el('retake').disabled=false;el('reset').disabled=false;el('status').textContent=`${photos.length} dari ${max} foto berhasil diambil.`;render();if(photos.length<max){el('capture').textContent=`📸 Foto berikutnya (${photos.length+1}/${max})`}else{el('capture').textContent='📸 Ambil Ulang Set';el('status').textContent='Selesai! Hasil photobooth siap diunduh.';el('download').disabled=false}};
-el('retake').onclick=()=>{photos.pop();el('download').disabled=true;el('capture').textContent=`📸 Foto berikutnya (${photos.length+1}/${templates[selected].slots.length})`;el('status').textContent=`Foto ${photos.length+1} akan diambil ulang.`;render()};
-el('reset').onclick=()=>{photos=[];el('download').disabled=true;el('retake').disabled=true;el('reset').disabled=true;el('capture').textContent='📸 Ambil Foto';el('status').textContent='Siap mengambil foto baru.';render()};
-async function render(){if(!photos.length){el('result').classList.add('hidden');el('result-empty').classList.remove('hidden');return}const t=templates[selected],img=new Image();await new Promise(resolve=>{img.onload=resolve;img.src=t.file});canv.width=img.naturalWidth;canv.height=img.naturalHeight;ctx.drawImage(img,0,0);for(let i=0;i<Math.min(photos.length,t.slots.length);i++){const [x,y,w,h]=t.slots[i],pic=new Image();await new Promise(resolve=>{pic.onload=resolve;pic.src=photos[i]});let X=x*canv.width,Y=y*canv.height,W=w*canv.width,H=h*canv.height;ctx.save();ctx.beginPath();ctx.rect(X,Y,W,H);ctx.clip();let ratio=Math.max(W/pic.width,H/pic.height),dw=pic.width*ratio,dh=pic.height*ratio;ctx.drawImage(pic,X+(W-dw)/2,Y+(H-dh)/2,dw,dh);ctx.restore()}el('result').src=canv.toDataURL('image/png');el('result').classList.remove('hidden');el('result-empty').classList.add('hidden')}
-el('download').onclick=()=>{let a=document.createElement('a');a.href=canv.toDataURL('image/png');a.download='RA-ARRAZZAQ-Photobooth.png';a.click()};
-</script></body></html>
+const video=document.getElementById('video'), canvas=document.getElementById('resultCanvas');
+const ctx=canvas.getContext('2d'), statusEl=document.getElementById('status');
+const placeholder=document.getElementById('cameraPlaceholder');
+let selected=0, stream=null, facing='user', photos=[];
+const templateImgs=templates.map(t=>{const im=new Image();im.src=t.src;return im;});
+function setStatus(s){statusEl.textContent=s}
+function countNeeded(){return templates[selected].slots.length}
+function drawCover(ctx,img,x,y,w,h,mirror=false){
+ const scale=Math.max(w/img.width,h/img.height), sw=w/scale, sh=h/scale;
+ const sx=(img.width-sw)/2, sy=(img.height-sh)/2;
+ ctx.save();
+ if(mirror){ctx.translate(x+w,y);ctx.scale(-1,1);ctx.drawImage(img,sx,sy,sw,sh,0,0,w,h)}
+ else ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);
+ ctx.restore();
+}
+function render(){
+ const im=templateImgs[selected]; if(!im.complete||!im.naturalWidth)return;
+ canvas.width=im.naturalWidth;canvas.height=im.naturalHeight;
+ ctx.clearRect(0,0,canvas.width,canvas.height);ctx.drawImage(im,0,0);
+ templates[selected].slots.forEach((s,i)=>{
+   if(!photos[i])return;
+   const [x,y,w,h]=s.map((v,j)=>v*(j%2===0?canvas.width:canvas.height));
+   ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();
+   drawCover(ctx,photos[i],x,y,w,h,true);ctx.restore();
+ });
+ document.getElementById('download').disabled=photos.length!==countNeeded();
+}
+function refreshShots(){
+ const el=document.getElementById('shots');el.innerHTML='';
+ photos.forEach((p,i)=>{const im=document.createElement('img');im.className='shot';im.src=p.toDataURL('image/jpeg',.88);im.alt='Foto '+(i+1);el.appendChild(im)});
+ render();
+}
+document.querySelectorAll('.template').forEach(btn=>btn.addEventListener('click',()=>{
+ selected=Number(btn.dataset.template);photos=[];document.querySelectorAll('.template').forEach(b=>b.classList.toggle('active',b===btn));
+ refreshShots();setStatus('Desain dipilih. Ambil '+countNeeded()+' foto untuk mengisi semua bingkai.');document.getElementById('capture').disabled=!stream;
+}));
+async function startCamera(){
+ try{
+  if(stream)stream.getTracks().forEach(t=>t.stop());
+  stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1280},height:{ideal:960}},audio:false});
+  video.srcObject=stream;video.hidden=false;placeholder.hidden=true;
+  document.getElementById('capture').disabled=false;document.getElementById('switchCamera').disabled=false;
+  setStatus('Kamera aktif. Ambil foto pertama!');
+ }catch(e){setStatus('Kamera tidak dapat diakses. Pastikan izin kamera diberikan dan website dibuka melalui HTTPS.');}
+}
+document.getElementById('startCamera').addEventListener('click',startCamera);
+document.getElementById('switchCamera').addEventListener('click',async()=>{facing=facing==='user'?'environment':'user';await startCamera()});
+document.getElementById('capture').addEventListener('click',()=>{
+ if(!stream||photos.length>=countNeeded())return;
+ const snap=document.createElement('canvas');snap.width=video.videoWidth;snap.height=video.videoHeight;
+ snap.getContext('2d').drawImage(video,0,0,snap.width,snap.height);
+ photos.push(snap);refreshShots();
+ if(photos.length<countNeeded())setStatus('Foto '+photos.length+' tersimpan. Lanjutkan ke bingkai '+(photos.length+1)+'.');
+ else setStatus('Selesai! Hasil photobooth siap diunduh.');
+ document.getElementById('retake').disabled=false;
+});
+document.getElementById('retake').addEventListener('click',()=>{
+ if(!photos.length)return;photos.pop();refreshShots();setStatus('Foto terakhir dihapus. Silakan ambil ulang.');document.getElementById('retake').disabled=!photos.length;
+});
+document.getElementById('download').addEventListener('click',()=>{
+ if(photos.length!==countNeeded())return;
+ const a=document.createElement('a');a.download='Photobooth-Hari-Guru-2026-RA-Arrazzaq.png';a.href=canvas.toDataURL('image/png');a.click();
+});
+document.getElementById('reset').addEventListener('click',()=>{
+ photos=[];refreshShots();document.getElementById('retake').disabled=true;setStatus('Foto direset. Silakan mulai lagi.');
+});
+templateImgs.forEach(im=>im.onload=()=>{if(templateImgs[selected]===im)render()});
+render();
+window.addEventListener('beforeunload',()=>{if(stream)stream.getTracks().forEach(t=>t.stop())});
+</script>
+</body>
+</html>
