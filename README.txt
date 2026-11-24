@@ -1,20 +1,23 @@
-RA ARRAZZAQ ONLINE PHOTOBOOTH
+PHOTObooth HARI GURU NASIONAL 2026 – RA ARRAZZAQ
 
-This is a ready-to-host, browser-based photobooth project. Camera access requires HTTPS (Netlify/GitHub Pages) or localhost.
+ISI PAKET
+- index.html: website photobooth
+- assets/: tiga template gambar dari pengguna
 
-FASTEST WAY TO MAKE IT PUBLIC (NETLIFY DROP):
-1. Download ra_photobooth_website.zip and extract it.
-2. Open https://app.netlify.com/drop in a browser and sign in/create a free account.
-3. Drag the extracted ra_photobooth folder onto the Netlify Drop area.
-4. Netlify publishes it and provides a public URL. Share that link with everyone.
+CARA MENJALANKAN
+1. Ekstrak file ZIP.
+2. Buka folder ra_arrazzaq_photobooth.
+3. Untuk tes kamera, jalankan melalui server lokal (kamera browser biasanya membutuhkan HTTPS atau localhost).
+   Cara mudah: unggah folder ke layanan hosting statis.
 
-Features:
-- 6 provided template designs
-- Camera preview and front/back camera toggle (supported devices)
-- Countdown before each capture
-- 2- or 3-photo arrangements depending on template
-- Retake last photo / start over
-- Download PNG photo result
-- Photos remain local in the browser; not uploaded to a server
+CARA MEMBUAT LINK PUBLIK (GRATIS) DENGAN NETLIFY
+1. Buka https://app.netlify.com/drop
+2. Login/daftar akun Netlify.
+3. Seret folder ra_arrazzaq_photobooth yang berisi index.html dan folder assets ke halaman tersebut.
+4. Netlify akan menerbitkan alamat website publik (HTTPS). Bagikan alamat itu kepada siapa saja.
 
-Tip: Open on phone and grant camera permission. If camera doesn't work, verify the site is served over HTTPS and browser camera permission is allowed.
+CATATAN
+- Website tidak memiliki backend/login.
+- Foto diproses di browser perangkat pengunjung dan tidak diunggah ke server.
+- Kamera memerlukan izin browser dan koneksi HTTPS (atau localhost).
+- Silakan uji posisi foto pada setiap template di HP sebelum dibagikan secara luas.
